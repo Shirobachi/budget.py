@@ -16,6 +16,50 @@ client = gspread.authorize(cred)
 sheet = client.open("Tut").sheet1
 
 print("Script started!")
+# Do magic
+
+# READING
+# pprint(sheet.get_all_records())
+
+# pprint(sheet.row_values(3))
+# pprint(sheet.col_values(2))
+
+# pprint(sheet.cell(3, 2).value)
+
+# sheet.insert_row(["is", "it", "working?"], 4)
+# sheet.delete_row(4)
+
+# sheet.update_cell(4, 5, 4)
+# sheet.update_cell(4, 6, 5)
+
+# sheet.update_cell(5, 5, "=E4+F4")
+
+# sheet.update_cell(6, 6, len(sheet.get_all_records()))
+
+
+# now = datetime.datetime.now()
+
+# time = ""
+# time += now.month + "/"+ now.day+ "/"+ now.year+ " "+ now.hour+ ":"+ now.minute+ ":"+ now.second
+
+# sheet.update_cell(1, 1, time)
+
+# i = 1
+
+# while True:
+#     if sheet.cell(1, 1).value != "":
+#         if sheet.cell(1, 1).value.isnumeric():
+#             print("work")
+#             break
+
+# while True:
+#     if sheet.cell(1, 1).value == "":
+#         sheet.update_cell(1, 1, "")
+#         sheet.update_cell(i, 8, random.randint(0, 99))
+#         print("Triggered")
+#         i -= -1
+
+# --------------------------------------------------------------------------
 
 def show(data):
     # get all data
