@@ -2,7 +2,7 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import datetime
 from pprint import pprint
-import random 
+import string
 
 # Prepairint and connect
 scope = [
@@ -17,8 +17,9 @@ sheet = client.open("Tut").sheet1
 
 print("Script started!")
 
-def show(data):
+def show():
     # get all data
+    data = sheet.get_all_records()
 
     # go through by rows
     for row in data: 
@@ -34,25 +35,28 @@ def show(data):
         print("")                    
 
 
-def fillUp(data):
+def fillUp():
+	data = sheet.get_all_records()
 
-    i = 2
-    for row in data:
-        for index, cell in row.items():
-            if cell == "":
-                if index == "Purchase Date":
-                    sheet.update_cell(i, 2, sheet.cell(i-1, 2).value)
-                elif index == "Item":
-                    sheet.update_cell(i, 3, sheet.cell(i-1, 3).value)
-                elif index == "Amount":
-                    sheet.update_cell(i, 4, sheet.cell(i-1, 4).value)
-                elif index == "Category":
-                    sheet.update_cell(i, 5, sheet.cell(i-1, 5).value)
+	for i in range(len(data)):
+		for index, cell in data[i].items():
+			if cell == "":
+				if index == "Purchase Date":
+					sheet.update_cell(i+2, 2, sheet.cell(i+2-1, 2).value)
+				elif index == "Item":
+					sheet.update_cell(i+2, 3, sheet.cell(i+2-1, 3).value)
+				elif index == "Amount":
+					sheet.update_cell(i+2, 4, sheet.cell(i+2-1, 4).value)
+				elif index == "Category":
+					sheet.update_cell(i+2, 5, sheet.cell(i+2-1, 5).value)
+        
+		goodFormatted = data[i]["Item"]
+		goodFormatted = goodFormatted.lower()
+		goodFormatted = goodFormatted.replace(goodFormatted[0], goodFormatted[0].upper(), 1)
+        
+		if not data[i]["Item"] == goodFormatted:
+			sheet.update_cell(i+2, 3, goodFormatted)
 
-        i += 1
-
-
-data = sheet.get_all_records()
-
-fillUp(data)
-show(data)
+show()
+fillUp()
+show()
