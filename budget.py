@@ -13,7 +13,7 @@ scope = [
 ]
 cred = ServiceAccountCredentials.from_json_keyfile_name("cred.json", scope)
 client = gspread.authorize(cred)
-sheet = client.open("Tut").sheet1
+sheet = client.open("Expense Tracker").sheet1
 
 print("Script started!")
 
