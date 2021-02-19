@@ -6,7 +6,7 @@ import string
 import logging
 
 # Start logging
-loggingFormat = "%(levelname)s: [%(asctime)s] %(message)s #%(lineno)s "
+loggingFormat = "%(levelname)s: [%(asctime)s] %(message)s %(filename)s#%(lineno)s "
 logging.basicConfig(filename = ".logging", level=logging.DEBUG,format=loggingFormat)
 
 logger = logging.getLogger()
@@ -54,19 +54,19 @@ def fillUp():
 			if cell == "":
 				if index == "Purchase Date":
 					sheet.update_cell(i+2, 2, sheet.cell(i+2-1, 2).value)
-					logger.info("cell 'Purchase Date' is empty, coppying from last precious record. Item " + data[i]["Item"] + " with id = " + i)
+					logger.info("cell 'Purchase Date' is empty, coppying from last precious record. Item " + data[i]["Item"] + " with id = " + str(i))
 
 				elif index == "Item":
 					sheet.update_cell(i+2, 3, sheet.cell(i+2-1, 3).value)
-					logger.info("cell 'Item' is empty, coppying from last precious record. Item " + data[i]["Item"] + " with id = " + i)
+					logger.info("cell 'Item' is empty, coppying from last precious record. Item " + data[i]["Item"] + " with id = " + str(i))
 
 				elif index == "Amount":
 					sheet.update_cell(i+2, 4, sheet.cell(i+2-1, 4).value)
-					logger.info("cell 'Amount' is empty, coppying from last precious record. Item " + data[i]["Item"] + " with id = " + i)
+					logger.info("cell 'Amount' is empty, coppying from last precious record. Item " + data[i]["Item"] + " with id = " + str(i))
 
 				elif index == "Category":
 					sheet.update_cell(i+2, 5, sheet.cell(i+2-1, 5).value)
-					logger.info("cell 'Category' is empty, coppying from last precious record. Item " + data[i]["Item"] + " with id = " + i)
+					logger.info("cell 'Category' is empty, coppying from last precious record. Item " + data[i]["Item"] + " with id = " + str(i))
 
 		
 		goodFormatted = data[i]["Item"]
@@ -75,8 +75,10 @@ def fillUp():
 		
 		if not data[i]["Item"] == goodFormatted:
 			sheet.update_cell(i+2, 3, goodFormatted)
-			logging.info("Record item's name not good. Correcting!")
+			logging.info("Record item's name not good. Correcting! Item " + data[i]["Item"] + " with id = " + str(i))
 
 show()
 fillUp()
 show()
+
+logging.info("Script ended!")
