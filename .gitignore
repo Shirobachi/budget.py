@@ -136,3 +136,4 @@ cred.json
 .history/*
 .logging
 
+.vscode/*
