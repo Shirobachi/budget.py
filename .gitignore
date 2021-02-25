@@ -133,3 +133,6 @@ dmypy.json
 
 # personal
 cred.json
+.history/*
+.logging
+
