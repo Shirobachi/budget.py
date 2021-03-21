@@ -85,9 +85,7 @@ def renameAsNeeded():
 
 
 show()
-input("Press ENTER if ready!")
 fillUp()
 renameAsNeeded()
-show()
 
 logging.info("Script ended!")
